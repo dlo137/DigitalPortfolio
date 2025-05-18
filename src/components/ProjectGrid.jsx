@@ -7,16 +7,20 @@ const GITHUB_USERNAME = 'dlo137'; // <-- Change to your GitHub username
 const repoScreenshots = {
   'FlaskReactWeatherApp': process.env.PUBLIC_URL + '/assets/FlaskReactWeatherApp.png',
   'react-weather-app': process.env.PUBLIC_URL + '/assets/ReactWeatherApp.png',
+  'Admin-Dashboard-Hosting': process.env.PUBLIC_URL + '/assets/Admin-Dashboard-Hosting.png',
+  'Nike-E-Commerce-Page': process.env.PUBLIC_URL + '/assets/Nike-E-Commerce-Page.png',
+  'Crypto-Currency-Tracker': process.env.PUBLIC_URL + '/assets/Crypto-Currency-Tracker.png',
 };
 
 const ProjectGrid = () => {
     const [repos, setRepos] = useState([]);
 
     useEffect(() => {
-        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc`)
+        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`)
             .then(res => res.json())
             .then(data => {
-                setRepos(data.slice(2 , 7));
+                console.log(data); // <-- Add this line
+                setRepos([data[2], data[3], data[26], data[29], data[31]]);
             });
     }, []);
 
@@ -32,11 +36,11 @@ const ProjectGrid = () => {
                 >
                     {/* Show screenshot if available */}
                     {repoScreenshots[repo.name] && (
-                    <img
-                        src={repoScreenshots[repo.name]}
+                        <img
+                        src={repoScreenshots[repo.name] || process.env.PUBLIC_URL + '/assets/placeholder.png'}
                         alt={repo.name}
                         className="project-screenshot"
-                    />
+                        />
                     )}
                     <div className="project-title-overlay">
                         <h2>{repo.name}</h2>
