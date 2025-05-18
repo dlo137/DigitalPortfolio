@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header className={`portfolio-header${visible ? '' : ' hide'}`}>
-      <h1>Digital Portfolio</h1>
+      <h1>DIGITAL PORTFOLIO</h1>
     </header>
   );
 };
