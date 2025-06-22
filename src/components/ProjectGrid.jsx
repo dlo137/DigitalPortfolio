@@ -20,7 +20,7 @@ const ProjectGrid = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data); // <-- Add this line
-                setRepos([data[2], data[3], data[26], data[29], data[31]]);
+                setRepos([data[4], data[5], data[28], data[31], data[33]]);
             });
     }, []);
 
