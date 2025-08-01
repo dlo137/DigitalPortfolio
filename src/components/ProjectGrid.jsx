@@ -10,6 +10,7 @@ const repoScreenshots = {
   'Admin-Dashboard-Hosting': process.env.PUBLIC_URL + '/assets/Admin-Dashboard-Hosting.png',
   'Nike-E-Commerce-Page': process.env.PUBLIC_URL + '/assets/Nike-E-Commerce-Page.png',
   'Crypto-Currency-Tracker': process.env.PUBLIC_URL + '/assets/Crypto-Currency-Tracker.png',
+  'StudyPal-AI': process.env.PUBLIC_URL + '/assets/studypal-screenshot.png',
 };
 
 const ProjectGrid = () => {
@@ -19,8 +20,14 @@ const ProjectGrid = () => {
         fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`)
             .then(res => res.json())
             .then(data => {
-                console.log(data); // <-- Add this line
-                setRepos([data[4], data[5], data[28], data[31], data[33]]);
+                console.log('All repos:', data);
+                const selectedRepos = [data[1], data[7], data[33], data[30], data[35]];
+                console.log('Selected repos:', selectedRepos);
+                selectedRepos.forEach((repo, idx) => {
+                    console.log(`Repo ${idx}:`, repo?.name, 'Screenshot exists:', !!repoScreenshots[repo?.name]);
+                    console.log(`Image path for ${repo?.name}:`, repoScreenshots[repo?.name]);
+                });
+                setRepos(selectedRepos);
             });
     }, []);
 
