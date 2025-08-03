@@ -21,7 +21,7 @@ const ProjectGrid = () => {
             .then(res => res.json())
             .then(data => {
                 console.log('All repos:', data);
-                const selectedRepos = [data[1], data[7], data[33], data[30], data[35]];
+                const selectedRepos = [data[1], data[8], data[31], data[34], data[36]];
                 console.log('Selected repos:', selectedRepos);
                 selectedRepos.forEach((repo, idx) => {
                     console.log(`Repo ${idx}:`, repo?.name, 'Screenshot exists:', !!repoScreenshots[repo?.name]);
