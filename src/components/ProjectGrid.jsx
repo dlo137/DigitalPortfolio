@@ -33,27 +33,31 @@ const ProjectGrid = () => {
 
     return (
         <div className="project-grid-container">
-            {repos.map((repo, idx) => (
-                <a
-                    key={repo.id}
-                    className={`project-item project-item-${idx + 1}`}
-                    href={`https://${GITHUB_USERNAME}.github.io/${repo.name}/`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {/* Show screenshot if available */}
-                    {repoScreenshots[repo.name] && (
-                        <img
-                        src={repoScreenshots[repo.name] || process.env.PUBLIC_URL + '/assets/placeholder.png'}
-                        alt={repo.name}
-                        className="project-screenshot"
-                        />
-                    )}
-                    <div className="project-title-overlay">
-                        <h2>{repo.name}</h2>
-                    </div>
-                </a>
-            ))}
+            {repos.map((repo, idx) => {
+                // If this is the first selected repo (index 0), link to studypal.website
+                const customHref = idx === 0 ? "https://studypal.website" : `https://${GITHUB_USERNAME}.github.io/${repo.name}/`;
+                return (
+                    <a
+                        key={repo.id}
+                        className={`project-item project-item-${idx + 1}`}
+                        href={customHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {/* Show screenshot if available */}
+                        {repoScreenshots[repo.name] && (
+                            <img
+                            src={repoScreenshots[repo.name] || process.env.PUBLIC_URL + '/assets/placeholder.png'}
+                            alt={repo.name}
+                            className="project-screenshot"
+                            />
+                        )}
+                        <div className="project-title-overlay">
+                            <h2>{repo.name}</h2>
+                        </div>
+                    </a>
+                );
+            })}
         </div>
     );
 };
